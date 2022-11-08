@@ -8,3 +8,13 @@ Es una aplicación de envío de correos masivos, la cual se compone de una panti
 * template.html
 
 Este aplicativo fue diseñado utilizando el contenido del [curso de Git y GitHub de Platzi](https://platzi.com/cursos/git-github/ "a ver el curso").
+
+# Instrucciones para usar el proyecto
+```sh
+git clone
+cd MailManagement
+python3 -m venv env
+source env/bin/activate
+pip3 install -r requirements.txt
+python3 main.py
+```
