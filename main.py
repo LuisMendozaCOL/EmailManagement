@@ -24,7 +24,7 @@ def send_mail(name, receiver_email):
     template_text, template_html = set_name(name)
     
     # Turn body into plain/html MIMEText objects
-    part1 = MIMEText(template_text, "plain")
+    #part1 = MIMEText(template_text, "plain")
     part2 = MIMEText(template_html, "html")
 
     # Add HTML/plain-text parts to MIMEMultipart message
@@ -32,27 +32,27 @@ def send_mail(name, receiver_email):
     #message.attach(part1)
     message.attach(part2)
 
-    filename = "files/1067957571_CVR_English_24Oct2022.pdf"  # In same directory as script
+    # files to attach
+    files = ["files/1067957571_CVR_English_24Oct2022.pdf", "files/1067957571_CVR_Español_10Oct2022.pdf"]
+    
+    for f in files:  # add files to the message       
+        # Open PDF file in binary mode
+        with open(f, "rb") as attachment:
+            # Add file as application/octet-stream
+            # Email client can usually download this automatically as attachment
+            part = MIMEBase("application", "octet-stream")
+            part.set_payload(attachment.read())  
 
-    # Open PDF file in binary mode
-    with open(filename, "rb") as attachment:
-        # Add file as application/octet-stream
-        # Email client can usually download this automatically as attachment
-        part = MIMEBase("application", "octet-stream")
-        part.set_payload(attachment.read())
+            # Encode file in ASCII characters to send by email    
+            encoders.encode_base64(part)
 
-    # Encode file in ASCII characters to send by email    
-    encoders.encode_base64(part)
-
-    # Add header as key/value pair to attachment part
-    part.add_header(
-        "Content-Disposition",
-        f"attachment; filename= {filename}",
-    )
-
-    # Add attachment to message and convert message to string
-    message.attach(part)
-    #text = message.as_string()
+            # Add header as key/value pair to attachment part
+            part.add_header(
+                "Content-Disposition",
+                f"attachment; filename= {f}",
+            )
+            # Add attachment to message
+            message.attach(part)
 
     # Log in to server using secure context and send email
     context = ssl.create_default_context()
