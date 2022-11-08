@@ -1,6 +1,8 @@
 # Gestor de Correos 💚
 Es una aplicación de envío de correos masivos, la cual se compone de una pantilla en HTML, una lista de correos en un archivo de texto plano tipo .csv. Adicionalmente, se requiere el uso del archivo hidden.py, el cual almacena las credenciales de acceso al correo a través de la API de GMAIL.
 
+Agradecimientos a https://realpython.com/python-send-email/ por publicar su blog relacionado al tema.
+
 ## Vamos a usar los siguientes archivos
 * main.py  --> contiene el programa principial
 * hidden.py --> contiene las credenciales de gmail
