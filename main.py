@@ -35,13 +35,11 @@ def send_mail(name, receiver_email):
     # files to attach
     files = ["files/1067957571_CVR_English_24Oct2022.pdf", "files/1067957571_CVR_Español_10Oct2022.pdf"]
     
-    for f in files:  # add files to the message       
+    for file in files:  # add files to the message       
         # Open PDF file in binary mode
-        with open(f, "rb") as attachment:
-            # Add file as application/octet-stream
-            # Email client can usually download this automatically as attachment
+        try:
             part = MIMEBase("application", "octet-stream")
-            part.set_payload(attachment.read())  
+            part.set_payload(open(file,"rb").read())  
 
             # Encode file in ASCII characters to send by email    
             encoders.encode_base64(part)
@@ -49,10 +47,12 @@ def send_mail(name, receiver_email):
             # Add header as key/value pair to attachment part
             part.add_header(
                 "Content-Disposition",
-                f"attachment; filename= {f}",
+                "attachment", filename=file
             )
             # Add attachment to message
             message.attach(part)
+        except:
+            print(f"We could not attach the file: {f}")
 
     # Log in to server using secure context and send email
     context = ssl.create_default_context()
