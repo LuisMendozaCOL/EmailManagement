@@ -22,6 +22,7 @@ python3 -m venv env
 source env/bin/activate
 pip3 install -r requirements.txt
 mkdir files
+touch hidden.py
 ```
 ## Segundo paso: agregar tu correo y contraseña de GMAIL al archivo hidden.py
 ```sh
@@ -40,7 +41,7 @@ Modifica el archivo para agregar la lista de correos a los cuales le quires envi
 subject = "Vacante: desarrollador en Python"
 sender_email = "TuCorreo"
 
-## Sexto paso: correr el script
+## Sexto paso: agregar archivos adjuntos
 Agrega tus archivos adjuntos a la carpeta files en formato pdf
         
 ## Septimo paso: correr el script
